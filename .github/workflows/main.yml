@@ -2,6 +2,8 @@ name: Main
 on: [push]
 env:
   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+  TF_IN_AUTOMATION: true
+  TF_INPUT: true
 jobs:
   main:
     runs-on: ubuntu-latest
