@@ -6,6 +6,7 @@ resource "google_project" "this" {
 resource "random_string" "this" {
   length  = 6
   special = false
+  upper   = false
 }
 
 resource "google_container_cluster" "this" {
