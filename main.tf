@@ -1,5 +1,5 @@
 resource "google_container_cluster" "this" {
-  name                     = "this"
+  name                     = var.name
   location                 = "us-central1-a"
   remove_default_node_pool = true
   initial_node_count       = 1
@@ -15,7 +15,7 @@ resource "google_container_cluster" "this" {
 }
 
 resource "google_container_node_pool" "this" {
-  name       = "this"
+  name       = var.name
   location   = "us-central1-a"
   cluster    = google_container_cluster.this.name
   node_count = 1
