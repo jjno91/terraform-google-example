@@ -11,16 +11,18 @@ jobs:
       image: hashicorp/terraform
     steps:
       - uses: actions/checkout@v2
+      - name: Env
+        run: env
       - name: Lint
         run: terraform fmt -recursive -check
       - name: Initialize
         run: terraform init test -backend-config "${GITHUB_REPOSITORY}-${GITHUB_REF}"
       - name: Apply
         run: terraform apply -auto-approve test
-        continue-on-error: true # ensure that ephemeral environment is destroyed
+        continue-on-error: true # ensure ephemeral environment is destroyed
       - name: Apply Idempotency Check
         run: terraform plan -detailed-exitcode test
-        continue-on-error: true # ensure that ephemeral environment is destroyed
+        continue-on-error: true # ensure ephemeral environment is destroyed
       - name: Destroy
         run: terraform destroy -auto-approve test
       - name: Destroy Idempotency Check
