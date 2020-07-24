@@ -1,20 +1,8 @@
-resource "google_project" "this" {
-  name       = var.name
-  project_id = "${var.name}-${random_string.this.result}"
-}
-
-resource "random_string" "this" {
-  length  = 6
-  special = false
-  upper   = false
-}
-
 resource "google_container_cluster" "this" {
   name                     = "this"
   location                 = "us-central1-a"
   remove_default_node_pool = true
   initial_node_count       = 1
-  project                  = google_project.this.id
 
   master_auth {
     username = ""
