@@ -2,6 +2,7 @@ name: Main
 on: [push]
 env:
   GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+  GOOGLE_PROJECT: github-jjno91
   TF_IN_AUTOMATION: true
   TF_INPUT: true
 jobs:
