@@ -11,12 +11,10 @@ jobs:
       image: hashicorp/terraform
     steps:
       - uses: actions/checkout@v2
-      - name: Env
-        run: env
       - name: Lint
         run: terraform fmt -recursive -check
       - name: Initialize
-        run: terraform init test -backend-config "${GITHUB_REPOSITORY}-${GITHUB_REF}"
+        run: terraform init -backend-config "${GITHUB_REPOSITORY}-${GITHUB_REF}" test
       - name: Apply
         run: terraform apply -auto-approve test
         continue-on-error: true # ensure ephemeral environment is destroyed
